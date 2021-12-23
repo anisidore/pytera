@@ -2,7 +2,7 @@
 
 A five stage pipeline to provision AWS resources for an EKS cluster and deploy initial containers
 
-1. Setting up the Terraform backend to pull state from an S3 bucket. Python script was used to copy local state to S3
+1. Setting up the Terraform backend to pull state from an S3 bucket. Python script was implemented to automate the copying of  local state to S3
 2. Provisioning the infrastructure using terraform to create the Amazon EKS cluster and deploy worker nodes 
 3. Creating an IAM Policy for the AWS Load Balancer Controller, creating an IAM role with the policy attached and annotate the Kubernetes service account for the AWS Load Balancer Controller 
 4. Installing the AWS Load Balancer Controller using helm
