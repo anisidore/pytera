@@ -37,7 +37,7 @@ pipeline {
                 sh 'apt-get update && apt-get install terraform'
                 dir('kubernetes') {
                     sh 'terraform init'
-                    sh 'terraform destroy -auto-approve'
+                    sh 'terraform apply -auto-approve'
                 }
             }
         }
@@ -103,10 +103,10 @@ pipeline {
         }
     }
 
-      post {
-          always {
-          cleanWs()
-          }
-      }
+    //   post {
+    //       always {
+    //       cleanWs()
+    //       }
+    //   }
 
 }
