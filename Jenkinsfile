@@ -26,8 +26,8 @@ pipeline {
                 sh 'terraform apply -auto-approve'
                 sh 'python3 append.py'
                 sh 'terraform init -force-copy'
-                }
             }
+        }
 
         stage('Provision') {
             steps {
@@ -36,7 +36,6 @@ pipeline {
                 sh 'apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
                 sh 'apt-get update && apt-get install terraform'
                 dir('kubernetes') {
-                    
                     sh 'terraform init'
                     sh 'terraform destroy -auto-approve'
                 }
@@ -102,13 +101,7 @@ pipeline {
                 }
             }
         }
-        }
-
-    //   post {
-    //       always {
-    //       cleanWs()
-    //       }
-    //   }
-
-
     }
+
+    
+}
