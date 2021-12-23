@@ -16,7 +16,7 @@ pipeline {
     }
 
     stages {
-        stage('Provision') {
+        stage('Initiate Terraform Remote Backend') {
             steps {
                 sh 'apt-get update && apt-get install -y gnupg software-properties-common curl python3'
                 sh 'curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - '
