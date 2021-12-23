@@ -10,7 +10,7 @@ variable "cluster_name" {
 }
 
 variable "db_name" {
-    default = "terraform-lock"
+    default = "terrpy-lock"
     description = "Database Name"
     type = string
 }
