@@ -8,7 +8,16 @@ A five stage pipeline to provision AWS resources for an EKS cluster and deploy i
 4. Installing the AWS Load Balancer Controller using helm
 5. Deploying the application containers on the Kubernetes 
 
-Files to update in prep to run pipeline
+Using GitHub Actions https://github.com/keresifon/pytera/tree/main/.github/workflows
+
+Using Jenkins see Jenkinsfile in main https://github.com/keresifon/pytera
+
+Using Circle CI https://github.com/keresifon/pytera/tree/main/.circleci
+
+Using Gitlab CI https://gitlab.com/keresifon/pytera/-/tree/main
+
+**Files to update in prep to run pipeline**
+
 variables.tf
  - s3_bucket: replace the default name
  - db_name : replace the default name
