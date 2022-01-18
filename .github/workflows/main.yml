@@ -43,7 +43,7 @@ jobs:
           sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
           sudo apt-get update && sudo apt-get install terraform
           terraform init
-          terraform apply -auto-approve
+          terraform destroy -auto-approve
           python3 append.py
           terraform init -force-copy
 
@@ -77,7 +77,7 @@ jobs:
           sudo apt-get update && sudo apt-get install terraform
           cd kubernetes
           terraform init
-          terraform apply -auto-approve 
+          terraform destroy -auto-approve 
 
   # This workflow contains a job for creating the necessary roles for the loadbalancer
   ingressrole:
