@@ -155,7 +155,7 @@ workflows:
   terraform-workflow:
     jobs:
       # - RemoteState
-      - Provision:
+      - Provision
           # requires:
           #   - "RemoteState"
       - IngressRole:
