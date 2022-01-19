@@ -12,7 +12,8 @@ module "eks" {
 
   vpc_id = module.vpc.vpc_id
 
-  workers_group_defaults = {
+  //workers_group_defaults = {
+    eks_managed_node_group_defaults = {
     root_volume_type = "gp2"
   }
 
