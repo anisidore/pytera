@@ -3,7 +3,7 @@ pipeline {
     agent {
                 any {
                     image 'ruby:2.6'
-                    args '-u root:root -v $HOME/workspace/TerraformState:/TerraformState'
+                    args '-u root:root -v $HOME/workspace/EKS:/EKS'
                 }
     }
 
