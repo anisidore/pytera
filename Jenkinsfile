@@ -2,7 +2,7 @@
 pipeline {
     agent {
                 docker {
-                    image 'ruby:2.6'
+                    //image 'ruby:2.6'
                     args '-u root:root -v $HOME/workspace/TerraformState:/TerraformState'
                 }
     }
