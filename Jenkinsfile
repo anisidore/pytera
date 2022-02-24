@@ -2,10 +2,8 @@
 pipeline {
     agent {
                 docker {
-                    image 'ubuntu:latest'
+                    image 'ruby:2.6'
                     args '-u root:root -v $HOME/workspace/TerraformState:/TerraformState'
-                    args'apt-get update && apt-get install -y docker'
-                  
 
                 }
     }
