@@ -3,7 +3,9 @@ pipeline {
     agent {
                 docker {
                     image 'ruby:2.6'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
                     args '-u root:root -v $HOME/workspace/TerraformState:/TerraformState'
+
                 }
     }
 
