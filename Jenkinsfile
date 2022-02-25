@@ -3,7 +3,7 @@ pipeline {
     agent {
                 docker {
                     image 'alpine:latest'
-                    args '-u root:root -v $HOME/workspace/TerraformState:/TerraformState'
+                    //args '-u root:root -v $HOME/workspace/TerraformState:/TerraformState'
 
                 }
     }
