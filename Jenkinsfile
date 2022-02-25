@@ -4,6 +4,7 @@ pipeline {
                 docker {
                     image 'alpine:latest'
                     //args '-u root:root -v $HOME/workspace/TerraformState:/TerraformState'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
 
                 }
     }
