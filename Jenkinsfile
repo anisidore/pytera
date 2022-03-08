@@ -1,9 +1,9 @@
 
 pipeline {
     agent {
-                docker {
+                any {
                     image 'ruby:2.6'
-                    //args '-u root:root -v $HOME/workspace/EKS:/EKS'
+                    args '-u root:root -v $HOME/workspace/EKS:/EKS'
                     //args '-v /var/run/docker.sock:/var/run/docker.sock'
 
                 }
@@ -25,7 +25,7 @@ pipeline {
                 sh 'apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
                 sh 'apt-get update && apt-get install terraform'
                 sh 'terraform init'
-                sh 'terraform destroy -auto-approve'
+                sh 'terraform apply -auto-approve'
                 sh 'python3 append.py'
                 sh 'terraform init -force-copy'
             }
