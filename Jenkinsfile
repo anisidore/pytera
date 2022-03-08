@@ -1,7 +1,7 @@
 
 pipeline {
     agent {
-                any {
+                docker {
                     image 'ruby:2.6'
                     args '-u root:root -v $HOME/workspace/EKS:/EKS'
                     //args '-v /var/run/docker.sock:/var/run/docker.sock'
