@@ -14,7 +14,7 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEYII')
         AWS_DEFAULT_REGION = credentials('AWS_DEFAULT_REGION')
         EKS_CLUSTER_NAME = credentials('EKS_CLUSTER_NAME')
-        AWS_ACCOUNT_ID = credentials('AWS_ACCOUNT_IDII')
+        AWS_ACCOUNT_ID = credentials('AWS_ACCOUNT_IDI')
     }
 
     stages {
