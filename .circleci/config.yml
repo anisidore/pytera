@@ -23,16 +23,16 @@ jobs:
           aws-region: AWS_DEFAULT_REGION
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
       - run:
-          echo Just pass on
-          # command: |
-          #   sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl python3
-          #   curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add - 
-          #   sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-          #   sudo apt-get update && sudo apt-get install terraform
-          #   terraform init
-          #   terraform apply -auto-approve
-          #   python3 append.py
-          #   terraform init -force-copy
+          
+          command: |
+            sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl python3
+            curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add - 
+            sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+            sudo apt-get update && sudo apt-get install terraform
+            terraform init
+            terraform apply -auto-approve
+            python3 append.py
+            terraform init -force-copy
 
   Provision:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -55,7 +55,7 @@ jobs:
             sudo apt-get update && sudo apt-get install terraform
             cd kubernetes
             terraform init
-            terraform destroy -auto-approve
+            terraform apply -auto-approve
 
   IngressRole:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -125,30 +125,30 @@ jobs:
               --set serviceAccount.create=false \
               --set serviceAccount.name=aws-load-balancer-controller
 
-  deploy:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
-      - checkout
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-region: AWS_DEFAULT_REGION
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-      - aws-eks/update-kubeconfig-with-authenticator:
-          install-kubectl: true
-          cluster-name: ${EKS_CLUSTER_NAME}
-          aws-region: ${AWS_DEFAULT_REGION}
-      - run:
-          command: |
-            cd kubernetes
-            kubectl apply -f namespace.yaml 
-            kubectl apply -f service.yaml 
-            kubectl apply -f ingress.yaml 
-            kubectl apply -f deployment.yaml
+  # deploy:
+  #   # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+  #   # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  #   docker:
+  #     - image: cimg/base:stable
+  #   # Add steps to the job
+  #   # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+  #   steps:
+  #     - checkout
+  #     - aws-cli/setup:
+  #         aws-access-key-id: AWS_ACCESS_KEY_ID
+  #         aws-region: AWS_DEFAULT_REGION
+  #         aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+  #     - aws-eks/update-kubeconfig-with-authenticator:
+  #         install-kubectl: true
+  #         cluster-name: ${EKS_CLUSTER_NAME}
+  #         aws-region: ${AWS_DEFAULT_REGION}
+  #     - run:
+  #         command: |
+  #           cd kubernetes
+  #           kubectl apply -f namespace.yaml 
+  #           kubectl apply -f service.yaml 
+  #           kubectl apply -f ingress.yaml 
+  #           kubectl apply -f deployment.yaml
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -165,6 +165,6 @@ workflows:
       - AWSIngress:
           requires:
             - "IngressRole"
-      - deploy:
-          requires:
-            - "AWSIngress"
+      # - deploy:
+      #     requires:
+      #       - "AWSIngress"
