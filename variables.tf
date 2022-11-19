@@ -1,11 +1,11 @@
 variable "s3_bucket" {
-    default = "pyn-enoabasi"
+    default = "pyna-enoabasi"
     description = "Bucket Name"
     type = string
 }
 
 variable "db_name" {
-    default = "terrpy-lock"
+    default = "terpy-lock"
     description = "Database Name"
     type = string
 }
