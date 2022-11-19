@@ -2,7 +2,7 @@
 
 terraform {
   backend "s3" {
-    bucket = "python-learn"
+    bucket = "pyn-enoabasi"
     key    = "kubernetes/s3/terraform.tfstate"
     region = "us-east-1"
 
