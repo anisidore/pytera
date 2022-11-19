@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "python-enoabasiii"
+    bucket = "python-enoabasi"
     key    = "global/s3/terraform.tfstate"
     region = "us-east-1"
 
