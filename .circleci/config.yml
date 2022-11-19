@@ -49,13 +49,14 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
       - run:
           command: |
-            sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
-            curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-            sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-            sudo apt-get update && sudo apt-get install terraform
-            cd kubernetes
-            terraform init
-            terraform destroy -auto-approve
+            echo "Just pass"
+          #  sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+          # curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+          # sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+          # sudo apt-get update && sudo apt-get install terraform
+          # cd kubernetes
+          # terraform init
+          # terraform appy -auto-approve
 
   IngressRole:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
