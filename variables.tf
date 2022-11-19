@@ -1,5 +1,5 @@
 variable "s3_bucket" {
-    default = "python-enoabasi"
+    default = "p-enoabasi"
     description = "Bucket Name"
     type = string
 }
