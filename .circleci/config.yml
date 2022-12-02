@@ -173,22 +173,8 @@ jobs:
           aws-region: ${AWS_DEFAULT_REGION}
       - run:
           command: |
-            sudo apt-get install helm
-            helm repo add newrelic https://helm-charts.newrelic.com && helm repo update && \
-            kubectl create namespace newrelic ; helm upgrade --install newrelic-bundle newrelic/nri-bundle \
-            --set global.licenseKey=c8f5ce584792cde903dbfc21081feffc7a07NRAL \
-            --set global.cluster=portfolio \
-            --namespace=newrelic \
-            --set newrelic-infrastructure.privileged=true \
-            --set global.lowDataMode=true \
-            --set ksm.enabled=true \
-            --set kubeEvents.enabled=true \
-            --set newrelic-prometheus-agent.enabled=true \
-            --set newrelic-pixie.enabled=true \
-            --set newrelic-pixie.apiKey=px-api-33a49722-db52-492f-ad60-e55d8c5081e9 \
-            --set pixie-chart.enabled=true \
-            --set pixie-chart.deployKey=px-dep-e544401d-7525-41e9-bc33-736ea50d5b2f \
-            --set pixie-chart.clusterName=portfolio
+            sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+            curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && NEW_RELIC_CLI_SKIP_CORE=1 NR_CLI_CLUSTERNAME=portfolio NR_CLI_NAMESPACE=newrelic NR_CLI_PRIVILEGED=true NR_CLI_LOW_DATA_MODE=true NR_CLI_KSM=true NR_CLI_KUBE_EVENTS=true NR_CLI_PROMETHEUS_AGENT=true NR_CLI_NEWRELIC_PIXIE=true NR_CLI_PIXIE_API_KEY=px-api-33a49722-db52-492f-ad60-e55d8c5081e9 NR_CLI_PIXIE=true NR_CLI_PIXIE_DEPLOY_KEY=px-dep-e544401d-7525-41e9-bc33-736ea50d5b2f NEW_RELIC_API_KEY=NRAK-SCJT35Q7LHAXPPPALWF29UDJ8OB NEW_RELIC_ACCOUNT_ID=3421319 /usr/local/bin/newrelic install -n kubernetes-open-source-integration
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
