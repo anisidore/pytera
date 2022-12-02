@@ -136,7 +136,7 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      #- checkout
+      - checkout
       - aws-cli/setup:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-region: AWS_DEFAULT_REGION
@@ -148,11 +148,11 @@ jobs:
       - run:
           command: |
             echo "Just pass"
-          cd kubernetes
-          kubectl apply -f namespace.yaml
-          kubectl apply -f service.yaml
-          kubectl apply -f ingress.yaml
-          kubectl apply -f deployment.yaml
+            cd kubernetes
+            kubectl apply -f namespace.yaml
+            kubectl apply -f service.yaml
+            kubectl apply -f ingress.yaml
+            kubectl apply -f deployment.yaml
 
   Monitoring:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
