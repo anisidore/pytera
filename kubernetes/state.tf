@@ -6,7 +6,7 @@ terraform {
     key    = "kubernetes/s3/terraform.tfstate"
     region = "us-east-1"
 
-    dynamodb_table = "terpyn-lock"
+    dynamodb_table = "enoabasi-lock"
     encrypt = true
   }
 }

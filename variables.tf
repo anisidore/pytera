@@ -5,7 +5,7 @@ variable "s3_bucket" {
 }
 
 variable "db_name" {
-    default = "terpyn-lock"
+    default = "enoabasi-lock"
     description = "Database Name"
     type = string
 }
