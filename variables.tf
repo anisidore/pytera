@@ -5,7 +5,7 @@ variable "s3_bucket" {
 }
 
 variable "db_name" {
-    default = "enoabasi-lock"
+    default = "en-lock"
     description = "Database Name"
     type = string
 }
