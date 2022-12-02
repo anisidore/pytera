@@ -2,11 +2,11 @@
 
 terraform {
   backend "s3" {
-    bucket = "pyna-enoabasi"
+    bucket = "pynan-enoabasi"
     key    = "kubernetes/s3/terraform.tfstate"
     region = "us-east-1"
 
-    dynamodb_table = "terpy-lock"
+    dynamodb_table = "terpyn-lock"
     encrypt = true
   }
 }
