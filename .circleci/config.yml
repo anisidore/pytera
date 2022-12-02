@@ -173,6 +173,7 @@ jobs:
           aws-region: ${AWS_DEFAULT_REGION}
       - run:
           command: |
+            sudo apt-get install helm
             helm repo add newrelic https://helm-charts.newrelic.com && helm repo update && \
             kubectl create namespace newrelic ; helm upgrade --install newrelic-bundle newrelic/nri-bundle \
             --set global.licenseKey=c8f5ce584792cde903dbfc21081feffc7a07NRAL \
