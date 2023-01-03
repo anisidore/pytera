@@ -17,22 +17,22 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      # - checkout
-      # - aws-cli/setup:
-      #     aws-access-key-id: AWS_ACCESS_KEY_ID
-      #     aws-region: AWS_DEFAULT_REGION
-      #     aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+      - checkout
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-region: AWS_DEFAULT_REGION
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
       - run:
           command: |
-            echo "Just pass"
-          # sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl python3
-            # curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-            # sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-            # sudo apt-get update && sudo apt-get install terraform
-            # terraform init
-            # terraform apply -auto-approve
-            # python3 append.py
-            # terraform init -force-copy
+         
+            sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl python3
+            curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+            sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+            sudo apt-get update && sudo apt-get install terraform
+            terraform init
+            terraform apply -auto-approve
+            python3 append.py
+            terraform init -force-copy
 
   Provision:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -73,22 +73,22 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
       - run:
           command: |
-            echo "Just pass"
-          # sudo apt-get update
-            # sudo apt-get -qq -y install curl
-            # sudo apt-get install -y unzip
-            # curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/v0.70.0/eksctl_Linux_amd64.tar.gz" | tar xz -C /tmp
-            # sudo mv /tmp/eksctl /usr/local/bin
-            # cd kubernetes
-            # aws iam create-policy --policy-name ALBIngressControllerIAMPolicy --policy-document file://iam_policy.json
-            # eksctl utils associate-iam-oidc-provider --region=${AWS_DEFAULT_REGION} --cluster=${EKS_CLUSTER_NAME} --approve
-            # eksctl create iamserviceaccount \
-            #     --cluster=${EKS_CLUSTER_NAME} \
-            #     --namespace=kube-system \
-            #     --name=aws-load-balancer-controller \
-            #     --attach-policy-arn=arn:aws:iam::${AWS_ACCOUNT_ID}:policy/ALBIngressControllerIAMPolicy \
-            #     --approve \
-            #     --override-existing-serviceaccounts
+            
+            sudo apt-get update
+            sudo apt-get -qq -y install curl
+            sudo apt-get install -y unzip
+            curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/v0.70.0/eksctl_Linux_amd64.tar.gz" | tar xz -C /tmp
+            sudo mv /tmp/eksctl /usr/local/bin
+            cd kubernetes
+            aws iam create-policy --policy-name ALBIngressControllerIAMPolicy --policy-document file://iam_policy.json
+            eksctl utils associate-iam-oidc-provider --region=${AWS_DEFAULT_REGION} --cluster=${EKS_CLUSTER_NAME} --approve
+            eksctl create iamserviceaccount \
+                --cluster=${EKS_CLUSTER_NAME} \
+                --namespace=kube-system \
+                --name=aws-load-balancer-controller \
+                --attach-policy-arn=arn:aws:iam::${AWS_ACCOUNT_ID}:policy/ALBIngressControllerIAMPolicy \
+                --approve \
+                --override-existing-serviceaccounts
   AWSIngress:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -97,7 +97,7 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      # - checkout
+      - checkout
       - aws-cli/setup:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-region: AWS_DEFAULT_REGION
@@ -108,25 +108,25 @@ jobs:
           aws-region: ${AWS_DEFAULT_REGION}
       - run:
           command: |
-            echo "Just pass"
-          # sudo apt-get update
-            # sudo apt-get -qq -y install curl
-            # sudo apt-get install -y unzip
-            # curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
-            # sudo apt-get install apt-transport-https --yes
-            # echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
-            # sudo apt-get update
-            # sudo apt-get install helm
-            # curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/v0.70.0/eksctl_Linux_amd64.tar.gz" | tar xz -C /tmp
-            # sudo mv /tmp/eksctl /usr/local/bin
-            # kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
-            # helm repo add eks https://aws.github.io/eks-charts
-            # helm repo update
-            # helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
-            #   -n kube-system \
-            #   --set clusterName=${EKS_CLUSTER_NAME} \
-            #   --set serviceAccount.create=false \
-            #   --set serviceAccount.name=aws-load-balancer-controller
+             
+            sudo apt-get update
+            sudo apt-get -qq -y install curl
+            sudo apt-get install -y unzip
+            curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+            sudo apt-get install apt-transport-https --yes
+            echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+            sudo apt-get update
+            sudo apt-get install helm
+            curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/v0.70.0/eksctl_Linux_amd64.tar.gz" | tar xz -C /tmp
+            sudo mv /tmp/eksctl /usr/local/bin
+            kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
+            helm repo add eks https://aws.github.io/eks-charts
+            helm repo update
+            helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
+              -n kube-system \
+              --set clusterName=${EKS_CLUSTER_NAME} \
+              --set serviceAccount.create=false \
+              --set serviceAccount.name=aws-load-balancer-controller
 
   deploy:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -147,12 +147,12 @@ jobs:
           aws-region: ${AWS_DEFAULT_REGION}
       - run:
           command: |
-            echo "Just pass"
-          # cd kubernetes
-            # kubectl apply -f namespace.yaml
-            # kubectl apply -f service.yaml
-            # kubectl apply -f ingress.yaml
-            # kubectl apply -f deployment.yaml
+            
+            cd kubernetes
+            kubectl apply -f namespace.yaml
+            kubectl apply -f service.yaml
+            kubectl apply -f ingress.yaml
+            kubectl apply -f deployment.yaml
 
   Monitoring:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -162,7 +162,7 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      #- checkout
+      - checkout
       - aws-cli/setup:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-region: AWS_DEFAULT_REGION
@@ -173,9 +173,9 @@ jobs:
           aws-region: ${AWS_DEFAULT_REGION}
       - run:
           command: |
-            echo "Just pass"
-          # sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
-            # curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && NEW_RELIC_CLI_SKIP_CORE=1 NR_CLI_CLUSTERNAME=portfolio NR_CLI_NAMESPACE=newrelic NR_CLI_PRIVILEGED=true NR_CLI_LOW_DATA_MODE=true NR_CLI_KSM=true NR_CLI_KUBE_EVENTS=true NR_CLI_PROMETHEUS_AGENT=true NR_CLI_NEWRELIC_PIXIE=true NR_CLI_PIXIE_API_KEY=${NR_CLI_PIXIE_API_KEY} NR_CLI_PIXIE=true NR_CLI_PIXIE_DEPLOY_KEY=${NR_CLI_PIXIE_DEPLOY_KEY} NEW_RELIC_API_KEY=${NEW_RELIC_API_KEY} NEW_RELIC_ACCOUNT_ID=${NEW_RELIC_ACCOUNT_ID} /usr/local/bin/newrelic install -n kubernetes-open-source-integration
+          
+            sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+            curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && NEW_RELIC_CLI_SKIP_CORE=1 NR_CLI_CLUSTERNAME=portfolio NR_CLI_NAMESPACE=newrelic NR_CLI_PRIVILEGED=true NR_CLI_LOW_DATA_MODE=true NR_CLI_KSM=true NR_CLI_KUBE_EVENTS=true NR_CLI_PROMETHEUS_AGENT=true NR_CLI_NEWRELIC_PIXIE=true NR_CLI_PIXIE_API_KEY=${NR_CLI_PIXIE_API_KEY} NR_CLI_PIXIE=true NR_CLI_PIXIE_DEPLOY_KEY=${NR_CLI_PIXIE_DEPLOY_KEY} NEW_RELIC_API_KEY=${NEW_RELIC_API_KEY} NEW_RELIC_ACCOUNT_ID=${NEW_RELIC_ACCOUNT_ID} /usr/local/bin/newrelic install -n kubernetes-open-source-integration
 # Invoke jobs via workflows
 #See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
